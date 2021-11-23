@@ -1,0 +1,10 @@
+export const BILLING_SUMMARY_FETCHED = "BILLING_SUMMARY_FETCHED";
+export const BILLING_CYCLES_FETCHED = "BILLING_CYCLES_FETCHED";
+export const TAB_SELECTED = "TAB_SELECTED";
+export const TAB_SHOWED = "TAB_SHOWED";
+export const TAB_LIST = "tabList";
+export const TAB_CREATE = "tabCreate";
+export const TAB_UPDATE = "tabUpdate";
+export const TAB_DELETE = "tabDelete";
+export const billingCycleForm = "billingCycleForm";
+export const BASE_URL = "http://localhost:3003/api";
