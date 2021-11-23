@@ -30,3 +30,13 @@ npm i --save express@4.14.0 mongoose@4.7.0 body-parser@1.15.2 lodash@4.17.4 mong
 # nodemon -> nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected.
 
 npm i --save-dev nodemon@1.11.0
+
+# Authentication
+
+# bcrypt -> A library to help you hash passwords.
+
+# jsonwebtoken (JWT) -> An implementation of JSON Web Tokens. JSON Web Token (JWT) is a compact, URL-safe means of representing claims to be transferred between two parties.
+
+# backend
+
+npm i --save bcrypt@3.0.6 jsonwebtoken@7.3.0
