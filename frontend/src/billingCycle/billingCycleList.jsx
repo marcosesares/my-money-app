@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { TAB_UPDATE, TAB_DELETE } from "../common/constants/constants";
+import {
+  TAB_UPDATE,
+  TAB_DELETE,
+  STYLE_WARNING,
+  STYLE_DANGER,
+} from "../common/constants/constants";
 import IconButton from "../common/template/iconButton";
 import { getBillingCyclesList, showTab } from "./billingCycleActions";
 
@@ -20,12 +25,12 @@ class BillingCycleList extends Component {
         <td>{billingCycle.year}</td>
         <td>
           <IconButton
-            style="warning"
+            style={STYLE_WARNING}
             icon="pencil"
             onClick={() => this.props.showTab(billingCycle, TAB_UPDATE)}
           />
           <IconButton
-            style="danger"
+            style={STYLE_DANGER}
             icon="trash-o"
             onClick={() => this.props.showTab(billingCycle, TAB_DELETE)}
           />

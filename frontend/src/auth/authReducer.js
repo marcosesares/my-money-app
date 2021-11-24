@@ -4,7 +4,7 @@ const INITIAL_STATE = {
   validToken: false,
 };
 
-export default (state = INITIAL_STATE, action) => {
+const AuthReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case "TOKEN_VALIDATED":
       if (action.payload) {
@@ -20,3 +20,5 @@ export default (state = INITIAL_STATE, action) => {
       return state;
   }
 };
+
+export default AuthReducer;

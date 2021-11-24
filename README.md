@@ -22,21 +22,25 @@ My money management
 
 # pm2 -> PM2 is a production process manager for Node.js applications with a built-in load balancer. It allows you to keep applications alive forever, to reload them without downtime and to facilitate common system admin tasks.
 
-npm init -y
-npm i --save express@4.14.0 mongoose@4.7.0 body-parser@1.15.2 lodash@4.17.4 mongoose-paginate@5.0.3 express-query-int@1.0.1 node-restful@0.2.5 pm2@2.1.5
-
-# DEV
-
-# nodemon -> nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected.
-
-npm i --save-dev nodemon@1.11.0
-
 # Authentication
 
 # bcrypt -> A library to help you hash passwords.
 
 # jsonwebtoken (JWT) -> An implementation of JSON Web Tokens. JSON Web Token (JWT) is a compact, URL-safe means of representing claims to be transferred between two parties.
 
+# nodemon -> nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected.
+
 # backend
 
-npm i --save bcrypt@3.0.6 jsonwebtoken@7.3.0
+npm init -y
+npm i --save express mongoose body-parser lodash mongoose-paginate express-query-int node-restful pm2 bcrypt jsonwebtoken
+
+# DEV
+
+npm i --save-dev nodemon
+
+# frontend
+
+# DEV
+
+npm i --save admin-lte axios babel-core babel-loader babel-plugin-react-html-attrs babel-plugin-transform-object-rest-spread babel-preset-es2015 babel-preset-react css-loader extract-text-webpack-plugin file-loader font-awesome ionicons lodash react react-dom react-redux react-redux-toastr react-router redux redux-form redux-multi redux-promise redux-thunk style-loader webpack webpack-dev-server

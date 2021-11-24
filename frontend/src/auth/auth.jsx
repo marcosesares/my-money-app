@@ -84,9 +84,13 @@ class Auth extends Component {
             </Row>
           </form>
           <br />
-          <a onClick={() => this.changeMode()}>
+          <button
+            type="button"
+            className="link-button"
+            onClick={() => this.changeMode()}
+          >
             {loginMode ? REGISTER_OPTION : LOGIN_OPTION}
-          </a>
+          </button>
         </div>
         <Messages />
       </div>

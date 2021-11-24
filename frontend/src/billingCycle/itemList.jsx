@@ -6,7 +6,12 @@ import { bindActionCreators } from "redux";
 import Grid from "../common/layout/grid";
 import IconButton from "../common/template/iconButton";
 import Input from "../common/form/input";
-import { billingCycleForm } from "../common/constants/constants";
+import {
+  billingCycleForm,
+  STYLE_SUCCESS,
+  STYLE_WARNING,
+  STYLE_DANGER,
+} from "../common/constants/constants";
 import If from "../common/template/if";
 
 class ItemList extends Component {
@@ -55,19 +60,19 @@ class ItemList extends Component {
         </If>
         <td>
           <IconButton
-            style="success"
+            style={STYLE_SUCCESS}
             icon="plus"
             type="button"
             onClick={() => this.add(index + 1)}
           />
           <IconButton
-            style="warning"
+            style={STYLE_WARNING}
             icon="clone"
             type="button"
             onClick={() => this.add(index + 1, item)}
           />
           <IconButton
-            style="danger"
+            style={STYLE_DANGER}
             icon="trash-o"
             type="button"
             onClick={() => this.remove(index, item)}

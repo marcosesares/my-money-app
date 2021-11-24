@@ -1,7 +1,7 @@
 import React from "react";
 import If from "../operator/if";
 
-export default (props) => (
+const InputAuth = (props) => (
   <If test={!props.hide}>
     <div className="form-group has-feedback">
       <input
@@ -18,3 +18,5 @@ export default (props) => (
     </div>
   </If>
 );
+
+export default InputAuth;

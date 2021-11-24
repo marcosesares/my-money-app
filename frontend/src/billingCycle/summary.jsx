@@ -3,7 +3,7 @@ import Grid from "../common/layout/grid";
 import Row from "../common/layout/row";
 import ValueBox from "../common/widget/valueBox";
 
-export default ({ credit, debt }) => {
+const Summary = ({ credit, debt }) => {
   return (
     <Grid cols="12">
       <fieldset>
@@ -35,3 +35,4 @@ export default ({ credit, debt }) => {
     </Grid>
   );
 };
+export default Summary;
