@@ -1,12 +1,11 @@
 import axios from "axios";
-import { toastr } from "react-redux-toastr";
+import { toast } from "react-toastify";
 
 import {
   USER_FETCHED,
   TOKEN_VALIDATED,
   OAPI_URL,
 } from "../common/constants/constants";
-import { ERROR } from "../common/constants/messageConstants";
 
 function submit(values, url) {
   return (dispatch) => {
@@ -16,7 +15,7 @@ function submit(values, url) {
         dispatch([{ type: USER_FETCHED, payload: resp.data }]);
       })
       .catch((e) => {
-        e.response.data.errors.forEach((error) => toastr.error(ERROR, error));
+        e.response.data.errors.forEach((error) => toast.error(error));
       });
   };
 }

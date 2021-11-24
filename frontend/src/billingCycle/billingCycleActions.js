@@ -1,9 +1,9 @@
 import axios from "axios";
-import { toastr } from "react-redux-toastr";
+import { toast } from "react-toastify";
 import { initialize } from "redux-form";
 
 import { showTabs, selectTab } from "../common/tab/tabActions";
-import { SUCCESS, SUCCESS_MESSAGE } from "../common/constants/messageConstants";
+import { SUCCESS_MESSAGE } from "../common/constants/messageConstants";
 import {
   BILLING_CYCLES_FETCHED,
   BASE_URL,
@@ -39,13 +39,11 @@ function submit(values, method) {
   return (dispatch) => {
     axios[method](`${BASE_URL}/billingCycles/${id}`, values)
       .then((response) => {
-        toastr.success(SUCCESS, SUCCESS_MESSAGE);
+        toast.success(SUCCESS_MESSAGE);
         dispatch(init());
       })
       .catch((error) => {
-        error.response.data.errors.forEach((error) =>
-          toastr.error("Error", error)
-        );
+        error.response.data.errors.forEach((error) => toast.error(error));
       });
   };
 }
