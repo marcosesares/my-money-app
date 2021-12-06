@@ -1,18 +1,18 @@
-const express = require("express");
-const auth = require("./auth");
+import expressRoutes from "express";
+import auth from "./auth";
 
-module.exports = function (server) {
-  const protectedApi = express.Router();
+export default function (server: any) {
+  const protectedApi = expressRoutes.Router();
   server.use("/api", protectedApi);
   protectedApi.use(auth);
 
   const BillingCycle = require("../api/billingCycle/billingCycleService");
   BillingCycle.register(protectedApi, "/billingCycles");
 
-  const openApi = express.Router();
+  const openApi = expressRoutes.Router();
   server.use("/oapi", openApi);
   const AuthService = require("../api/user/AuthService");
   openApi.post("/login", AuthService.login);
   openApi.post("/signup", AuthService.signup);
   openApi.post("/validateToken", AuthService.validateToken);
-};
+}

@@ -1,22 +1,21 @@
-const _ = require("lodash");
+import * as _ from "lodash";
+import { Request, Response, NextFunction } from "express";
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const User = require("./user");
 const env = require("../../.env");
+const serviceConstants = require("../../constants/constants");
 
-const emailRegex = /\S+@\S+\.\S+/;
-const passwordRegex = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})/;
-
-const sendErrorsFromDB = (res, dbErrors) => {
-  const errors = [];
-  _.forIn(dbErrors.errors, (error) => errors.push(error.message));
+const sendErrorsFromDB = (res: any, dbErrors: any) => {
+  const errors: any[] = [];
+  _.forIn(dbErrors.errors, (error: any) => errors.push(error.message));
   return res.status(400).json({ errors });
 };
 
-const login = (req, res, next) => {
+const login = (req: Request, res: Response, next: NextFunction) => {
   const email = req.body.email || "";
   const password = req.body.password || "";
-  User.findOne({ email }, (err, user) => {
+  User.findOne({ email }, (err: any, user: any) => {
     if (err) {
       return sendErrorsFromDB(res, err);
     } else if (user && bcrypt.compareSync(password, user.password)) {
@@ -26,50 +25,52 @@ const login = (req, res, next) => {
       const { name, email } = user;
       res.json({ name, email, token });
     } else {
-      return res.status(400).send({ errors: ["Usuário/Senha inválidos"] });
+      return res.status(400).send({ errors: [serviceConstants.LOGIN_ERROR] });
     }
   });
 };
 
-const validateToken = (req, res, next) => {
+const validateToken = (req: Request, res: Response, next: NextFunction) => {
   const token = req.body.token || "";
-  jwt.verify(token, env.authSecret, function (err, decoded) {
+  jwt.verify(token, env.authSecret, function (err: any, decoded: any) {
     return res.status(200).send({ valid: !err });
   });
 };
 
-const signup = (req, res, next) => {
+const signup = (req: Request, res: Response, next: NextFunction) => {
   const name = req.body.name || "";
   const email = req.body.email || "";
   const password = req.body.password || "";
   const confirmPassword = req.body.confirm_password || "";
 
-  if (!email.match(emailRegex)) {
-    return res.status(400).send({ errors: ["Invalid email"] });
+  if (!email.match(serviceConstants.EMAIL_REGEX)) {
+    return res.status(400).send({ errors: [serviceConstants.INVALID_EMAIL] });
   }
 
-  if (!password.match(passwordRegex)) {
+  if (!password.match(serviceConstants.PASSWORD_REGEX)) {
     return res.status(400).send({
-      errors: [
-        "The password must have: Capital letter, Lower case letter, a number, special charactere(@#$%) and size between 6-20.",
-      ],
+      errors: [serviceConstants.INVALID_PASSWORD],
     });
   }
   const salt = bcrypt.genSaltSync();
   const passwordHash = bcrypt.hashSync(password, salt);
 
   if (!bcrypt.compareSync(confirmPassword, passwordHash)) {
-    return res.status(400).send({ errors: ["Passwords do not match."] });
+    return res
+      .status(400)
+      .send({ errors: [serviceConstants.PASSWORD_NOT_MATCH] });
   }
 
-  User.findOne({ email }, (err, user) => {
+  User.findOne({ email }, (err: any, user: any) => {
     if (err) {
       return sendErrorsFromDB(res, err);
     } else if (user) {
-      return res.status(400).send({ errors: ["User already exists."] });
+      return res
+        .status(400)
+        .send({ errors: [serviceConstants.USER_ALREADY_EXISTS] });
     } else {
       const newUser = new User({ name, email, password: passwordHash });
-      newUser.save((err) => {
+      newUser.save((err: any) => {
         if (err) {
           return sendErrorsFromDB(res, err);
         } else {
