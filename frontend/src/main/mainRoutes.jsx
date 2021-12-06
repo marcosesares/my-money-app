@@ -9,7 +9,7 @@ const MainRoutes = (props) => (
     <Routes>
       <Route exact path="/" element={<Dashboard />} />
       <Route exact path="/billingCycles" element={<BillingCycle />} />
-      <Route path="/" element={<Dashboard />} />
+      <Route path="*" element={<Dashboard />} />
     </Routes>
   </div>
 );
