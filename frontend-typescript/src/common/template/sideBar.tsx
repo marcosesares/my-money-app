@@ -1,7 +1,7 @@
 import React from "react";
 import Menu from "./menu";
 
-const SideBar = (props) => (
+const SideBar = () => (
   <aside className="main-sidebar">
     <section className="sidebar">
       <Menu />
