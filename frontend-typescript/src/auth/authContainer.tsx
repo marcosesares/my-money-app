@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { login, signup } from "./authActions";
-import { IDispatchProps, FormComponent } from "./formComponent";
+import { IDispatchProps, FormComponent } from "./authComponent";
 import { AnyAction, bindActionCreators, Dispatch } from "redux";
 
 const FormContainer = (props: IDispatchProps) => <FormComponent {...props} />;

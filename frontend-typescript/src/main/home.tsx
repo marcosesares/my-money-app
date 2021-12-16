@@ -6,7 +6,7 @@ import { AnyAction, bindActionCreators, Dispatch } from "redux";
 import App from "./app";
 import { validateToken } from "../auth/authActions";
 import "../common/template/dependencies";
-import Auth from "../auth/auth";
+import { AuthForm } from "../auth/authContainer";
 
 interface HomeProps {
   validateToken: (token: string) => void;
@@ -32,7 +32,7 @@ class Home extends Component<HomeProps> {
       return <App />;
     }
     if (!user && !validToken) {
-      return <Auth />;
+      return <AuthForm />;
     }
     return false;
   }

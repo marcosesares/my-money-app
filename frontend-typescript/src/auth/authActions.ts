@@ -1,14 +1,16 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-
+import { IFormProps } from "./authComponent";
 import {
   USER_FETCHED,
   TOKEN_VALIDATED,
   OAPI_URL,
 } from "../common/constants/constants";
 
-function submit(values: string[], url: string) {
+function submit(values: IFormProps, url: string) {
   return (dispatch: any) => {
+    console.log(`submit ${values}`);
+    console.log(values);
     axios
       .post(url, values)
       .then((resp) => {
@@ -21,7 +23,7 @@ function submit(values: string[], url: string) {
   };
 }
 
-const login = (values: string[]) => {
+const login = (values: IFormProps) => {
   console.log(typeof values);
   return submit(values, `${OAPI_URL}/login`);
 };
@@ -30,7 +32,7 @@ const logout = () => {
   return { type: TOKEN_VALIDATED, payload: false };
 };
 
-const signup = (values: string[]) => {
+const signup = (values: IFormProps) => {
   return submit(values, `${OAPI_URL}/signup`);
 };
 

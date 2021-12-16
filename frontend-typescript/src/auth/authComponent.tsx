@@ -9,6 +9,7 @@ import {
   LOGIN_OPTION,
 } from "../common/constants/messageConstants";
 import Input from "../common/form/inputAuth";
+import { useState } from "react";
 
 export interface IFormProps {
   name: string;
@@ -18,40 +19,28 @@ export interface IFormProps {
 }
 
 export interface IDispatchProps {
-  login: (values: string[]) => any;
-  signup: (values: string[]) => any;
+  login: (values: IFormProps) => any;
+  signup: (values: IFormProps) => any;
 }
 
 const Component = (
   props: IDispatchProps & InjectedFormProps<IFormProps, IDispatchProps>
 ) => {
-  const state = { loginMode: true };
+  const [loginMode, setLoginMode] = useState(true);
 
   function changeMode() {
-    state.loginMode = !state.loginMode;
+    setLoginMode(!loginMode);
   }
 
   const submitForm = (values: IFormProps) => {
     const { login, signup } = props;
-    state.loginMode
-      ? login([
-          values.name,
-          values.email,
-          values.password,
-          values.confirm_password,
-        ])
-      : signup([
-          values.name,
-          values.email,
-          values.password,
-          values.confirm_password,
-        ]);
+    loginMode ? login(values) : signup(values);
   };
 
   return (
     <div className="login-box">
       <div className="login-logo">
-        <b> {MY}</b> {MONEY}
+        <b> {MY}</b> {MONEY} app
       </div>
       <div className="login-box-body">
         <p className="login-box-msg">{WELCOME}</p>
@@ -62,7 +51,7 @@ const Component = (
             name="name"
             placeholder="Name"
             icon="user"
-            hide={state.loginMode}
+            hide={loginMode}
           />
           <Field
             component={Input}
@@ -84,7 +73,7 @@ const Component = (
             name="confirm_password"
             placeholder="Confirm Password"
             icon="lock"
-            hide={state.loginMode}
+            hide={loginMode}
           />
           <Row>
             <Grid cols="4">
@@ -93,7 +82,7 @@ const Component = (
                 className="btn btn-primary btn-block btn-flat"
                 onClick={props.handleSubmit((v) => submitForm(v))}
               >
-                {state.loginMode ? "Login" : "Register"}
+                {loginMode ? "Login" : "Register"}
               </button>
             </Grid>
           </Row>
@@ -104,7 +93,7 @@ const Component = (
           className="link-button"
           onClick={() => changeMode()}
         >
-          {state.loginMode ? REGISTER_OPTION : LOGIN_OPTION}
+          {loginMode ? REGISTER_OPTION : LOGIN_OPTION}
         </button>
       </div>
       <Messages />
