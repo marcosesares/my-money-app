@@ -3,7 +3,7 @@ import React from "react";
 import { HashRouter } from "react-router-dom";
 
 import Header from "../common/template/header";
-import SideBar from "../common/template/sideBar.tsx";
+import SideBar from "../common/template/sideBar";
 import Footer from "../common/template/footer";
 import Messages from "../common/messages/messages";
 import MainRoutes from "./mainRoutes";

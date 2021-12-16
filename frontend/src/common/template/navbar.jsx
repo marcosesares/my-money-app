@@ -1,27 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { AnyAction, bindActionCreators, Dispatch } from "redux";
+import { bindActionCreators } from "redux";
 import { logout } from "../../auth/authActions";
 
-interface NavbarProps {
-  logout: () => { type: string; payload: boolean };
-  user: {
-    name: string;
-    email: string;
-  };
-}
-interface NavbarState {
-  open: boolean;
-  auth: {
-    user: {
-      name: string;
-      email: string;
-    };
-  };
-}
-
-class Navbar extends Component<NavbarProps, NavbarState> {
-  constructor(props: NavbarProps) {
+class Navbar extends Component {
+  constructor(props) {
     super(props);
     this.state = {
       open: false,
@@ -84,11 +67,11 @@ class Navbar extends Component<NavbarProps, NavbarState> {
     );
   }
 }
-const mapStateToProps = (state: NavbarState) => ({
+const mapStateToProps = (state) => ({
   user: state.auth.user,
   open: state.open,
 });
-const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ logout }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

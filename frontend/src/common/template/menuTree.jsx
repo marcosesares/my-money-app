@@ -1,12 +1,6 @@
 import React from "react";
 
-interface MenuTreeProps {
-  path?: string;
-  icon: string;
-  label: string;
-  children: any;
-}
-const MenuTree = (props: MenuTreeProps) => (
+const MenuTree = (props) => (
   <li className="treeview">
     <a href={props.path}>
       <i className={`fa fa-${props.icon}`}></i> <span>{props.label}</span>
