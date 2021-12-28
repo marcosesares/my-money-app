@@ -10,8 +10,8 @@ server.use(bodyParser.json());
 server.use(allowCors);
 server.use(queryParser());
 
-server.listen(port, function () {
-  console.log(`listening on port ${port}...`);
+server.listen(process.env.PORT || port, function () {
+  console.log(`listening on port ${process.env.PORT || port}...`);
 });
 
 export default server;
