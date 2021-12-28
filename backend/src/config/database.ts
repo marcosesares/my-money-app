@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import * as constants from "../constants/constants";
 
 mongoose.Promise = global.Promise;
-export default mongoose.connect(constants.BASE_URL, {
+export default mongoose.connect(process.env.MONGODB_URI || "", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
