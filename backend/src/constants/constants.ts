@@ -1,4 +1,5 @@
-export const BASE_URL = "mongodb://localhost/mymoney";
+const env = require("../.env");
+export const BASE_URL = `mongodb+srv://${env.dbUser}:${env.dbPassword}@my-money-cluster.kzxuo.mongodb.net/mymoney?retryWrites=true&w=majority`;
 export const LOGIN_ERROR = "Invalid User/Password";
 export const USER_ALREADY_EXISTS = "User already exists.";
 export const PASSWORD_NOT_MATCH = "Passwords do not match.";
