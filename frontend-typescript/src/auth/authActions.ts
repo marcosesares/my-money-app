@@ -9,12 +9,9 @@ import {
 
 function submit(values: IFormProps, url: string) {
   return (dispatch: any) => {
-    console.log(`submit ${values}`);
-    console.log(values);
     axios
       .post(url, values)
       .then((resp) => {
-        console.log(resp.data);
         dispatch([{ type: USER_FETCHED, payload: resp.data }]);
       })
       .catch((e) => {
@@ -24,7 +21,6 @@ function submit(values: IFormProps, url: string) {
 }
 
 const login = (values: IFormProps) => {
-  console.log(typeof values);
   return submit(values, `${OAPI_URL}/login`);
 };
 

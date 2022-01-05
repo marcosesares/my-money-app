@@ -23,7 +23,6 @@ class ItemList extends Component {
 
   remove(index) {
     if (!this.props.readOnly && this.props.list.length > 1) {
-      console.log(this.props.list.length, index);
       this.props.arrayRemove(billingCycleForm, this.props.field, index);
     }
   }

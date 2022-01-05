@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/loader.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cucumber-js",
     "dev": "nodemon",
     "start": "ts-node src/loader.ts",
     "production": "pm2 start src/loader.ts --name my-money-backend"
@@ -34,5 +34,11 @@
   "build": "tsc",
   "engines": {
     "node": "16.13.0"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^8.0.0-rc.1",
+    "@cucumber/cucumber-expressions": "^14.0.0",
+    "hamjest": "^3.7.3",
+    "pactum": "^3.1.1"
   }
 }
