@@ -6,6 +6,7 @@ Before(() => {
   spec = pactum.spec();
 });
 
+
 Given(/^I make a (.*) request to (.*)$/, function (method, endpoint) {
   spec[method.toLowerCase()](endpoint);
 });
