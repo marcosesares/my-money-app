@@ -44,3 +44,24 @@ npm i --save-dev nodemon
 # DEV
 
 npm i --save admin-lte axios babel-core babel-loader babel-plugin-react-html-attrs babel-plugin-transform-object-rest-spread babel-preset-es2015 babel-preset-react css-loader extract-text-webpack-plugin file-loader font-awesome ionicons lodash react react-dom react-redux react-redux-toastr react-router redux redux-form redux-multi redux-promise redux-thunk style-loader webpack webpack-dev-server
+
+# Installing backend
+cd backend
+npm config set legacy-peer-deps true
+npm i
+npm start
+add .env and .env.ts
+
+.env example:
+module.exports = {
+authSecret: '<secret_key>',
+dbUser: '<user>',
+dbPassword: '<pass>',
+MONGODB_URI: "<dburi>"
+}
+
+.en.ts example
+export const dbUser="<user>"
+export const dbPassword="<pass>"
+
+files stored on drive
